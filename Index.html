@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background-color: darkred;   /* PAGE 1 BACKGROUND */
+      color: black;                /* TEXT COLOR */
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .hearts {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    /* BUTTON AREA */
+    .buttons {
+      display: flex;
+      gap: 50px;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    button {
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ffb6c1;
+      color: black;
+    }
+
+    #noBtn {
+      background-color: white;
+      color: black;
+      position: relative;
+    }
+
+    /* PAGE 2 */
+    #page2 {
+      background-color: pink;   /* SECOND PAGE BACKGROUND */
+      color: purple;
+    }
+
+    #page2 h1 {
+      color: darkred;
+    }
+
+    #page2 h2 {
+      color: purple;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    #page2 p {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page active" id="page1">
+    
+    <h1><strong>Welcome</strong> <em>Zulpha</em></h1>
+
+    
+    <h2>Will you be my valentine🌹💍?</h2>
+
+    <div class="buttons" id="buttonWrapper">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page" id="page2">
+    <p>❤️</p>
+    <h1>Dear dear valentine, 😍</h1>
+
+    
+    <h2>You are always gonna be my one and only, my love.</h2>
+    <h2>The amount of crazy you make me is always gonna know no bounds.</h2>
+    <h2>Thank you for your YES, my lady ❤️</h2>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+
+    let activated = false;
+
+    function moveNoButton() {
+      const pageRect = page1.getBoundingClientRect();
+
+      if (!activated) {
+        const btnRect = noBtn.getBoundingClientRect();
+        noBtn.style.position = "absolute";
+        noBtn.style.left = btnRect.left - pageRect.left + "px";
+        noBtn.style.top = btnRect.top - pageRect.top + "px";
+        activated = true;
+      }
+
+      const maxX = pageRect.width - noBtn.offsetWidth;
+      const maxY = pageRect.height - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      page1.classList.remove("active");
+      page2.classList.add("active");
+    });
+  </script>
+
+</body>
+  </html>
